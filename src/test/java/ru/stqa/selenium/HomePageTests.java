@@ -9,23 +9,30 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import ru.stqa.selenium.pages.HomePageHelper;
+import ru.stqa.selenium.pages.LoginPageHelper;
+import ru.stqa.selenium.pages.UnAuthEventsPageHelper;
 
 public class HomePageTests extends TestBase {
 
   private HomePageHelper homepage;
+  private UnAuthEventsPageHelper unAuthEventsPage;
+  private LoginPageHelper loginPage;
 
   @BeforeMethod
   public void initPageObjects() {
 
-    homepage = PageFactory.initElements(driver, HomePageHelper.class);
+    homepage = PageFactory.initElements(driver,
+            HomePageHelper.class);
+    unAuthEventsPage = PageFactory.initElements(driver,
+            UnAuthEventsPageHelper.class);
+    loginPage = PageFactory.initElements(driver,
+            LoginPageHelper.class);
     driver.get(baseUrl);
   }
 
   @Test
   public void openHomePageTest() {
     homepage.waitUntilPageIsLoaded();
-    /*WebElement buttonLogin = driver
-            .findElement(By.xpath("//span[contains(text(),'Login')]"));*/
     Assert.assertEquals(homepage.getHeaderText(),
             "Shabbat in the family circle");
   }
@@ -41,4 +48,26 @@ public class HomePageTests extends TestBase {
     if (homepage.getGoToEventsButtonName().equals("Go to Event list")) counter++;
     Assert.assertEquals(counter,4);
   }
+
+  @Test
+  public void goToEventsPageTest(){
+    homepage.waitUntilPageIsLoaded()
+            .pressGoToEventButton();
+    unAuthEventsPage.waitUntilPageIsLoaded();
+    Assert.assertTrue(unAuthEventsPage.isHeaderCorrect("Find event"));
+  }
+
+  @Test
+  public void goLoginPageTest(){
+    homepage.waitUntilPageIsLoaded()
+            .pressLoginButton()
+            .waitUntilPageIsLoaded();
+    Assert.assertTrue(loginPage.isLoginPageOpened());
+
+
+  }
+
+
+
+
 }

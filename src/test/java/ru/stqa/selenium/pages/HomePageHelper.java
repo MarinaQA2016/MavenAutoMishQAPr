@@ -30,10 +30,9 @@ public class HomePageHelper extends PageBase {
     super(webDriver);
   }
 
-  public void waitUntilPageIsLoaded() {
-    /*waitUntilElementIsLoaded(driver,
-            By.xpath("//span[contains(text(),'Go to Event list')]"), 30);*/
+  public HomePageHelper waitUntilPageIsLoaded() {
     waitUntilElementIsLoaded(driver,goToEventsButton,40);
+    return this;
   }
   public String getHeaderText(){
     return header.getText();
@@ -49,5 +48,15 @@ public class HomePageHelper extends PageBase {
 
   public String getGoToEventsButtonName() {
     return goToEventsButton.getText();
+  }
+
+  public HomePageHelper pressGoToEventButton() {
+    goToEventsButton.click();
+    return this;
+  }
+
+  public HomePageHelper pressLoginButton() {
+    loginButton.click();
+    return this;
   }
 }
