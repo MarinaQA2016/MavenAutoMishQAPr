@@ -33,4 +33,9 @@ public class AuthEventsPageHelper extends PageBase{
     public boolean isDisplayedIconMenu() {
         return iconMenu.getAttribute("mattooltip").equals("Menu");
     }
+
+    public AuthEventsPageHelper pressIconMenu(){
+        iconMenu.click();
+        return this;
+    }
 }
