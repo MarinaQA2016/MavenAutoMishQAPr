@@ -26,6 +26,36 @@ public class DataProviders {
         return userData.iterator();
     }
 
+    @DataProvider
+    public static Iterator<Object[]> anotherPositiveLogin() {
+        List<Object[]> data = new ArrayList();
+        data.add(new Object[]{"marinaLongLongLong@gmail.com", "marinaLongLongLong"});
+        data.add(new Object[]{"MaRina@123", "MaRina"});
 
-   }
+        return data.iterator();
+    }
+
+
+    @DataProvider
+    public Iterator<Object[]> randomUsers() {
+        List<Object[]> data = new ArrayList();
+
+        for(int i = 0; i < 3; ++i) {
+            data.add(new Object[]{this.generateRandomName(), this.generateRandomPassword()});
+        }
+
+        return data.iterator();
+    }
+
+    private Object generateRandomPassword() {
+        return "pass" + (new Random()).nextInt();
+    }
+
+    private Object generateRandomName() {
+        return "demo" + (new Random()).nextInt()+"@gmail.com";
+    }
+
+
+
+}
 
