@@ -47,6 +47,7 @@ public abstract class PageBase {
       e.printStackTrace();
     }
   }
+
   public void enterValueToField(WebElement element, String value) {
   element.click();
   element.clear();
