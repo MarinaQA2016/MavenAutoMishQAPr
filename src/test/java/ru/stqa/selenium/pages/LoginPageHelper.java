@@ -56,4 +56,5 @@ public class LoginPageHelper extends PageBase{
         submitButton.click();
         return this;
     }
+
 }
